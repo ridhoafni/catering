@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "610665389031",
+    "firebase_url": "https://catering-dff84.firebaseio.com",
+    "project_id": "catering-dff84",
+    "storage_bucket": "catering-dff84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610665389031:android:a8bb153e132982eb",
+        "android_client_info": {
+          "package_name": "com.example.anonymous.catering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610665389031-7vraa6ttt8416fv1nh4o4qbmdduhulp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLIhbaCcCQkyp0K8io92G_5NZy2Js53K8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
