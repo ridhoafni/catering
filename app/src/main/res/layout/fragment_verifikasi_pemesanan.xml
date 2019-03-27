@@ -4,5 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ui.fragments.VerifikasiPemesananFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="vertical"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:id="@+id/rvVerifikasi"
+                android:scrollbars="vertical"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+        </ScrollView>
+
+    </RelativeLayout>
 
 </FrameLayout>

@@ -36,10 +36,5 @@ public class ThreeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_three, container, false);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_akun, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
 }

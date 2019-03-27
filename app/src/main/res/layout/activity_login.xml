@@ -63,23 +63,23 @@
             android:text="@string/btn_login"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="cursive"
-            android:text="OR"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"
-            android:paddingTop="2dp"
-            android:layout_marginTop="5dp"/>
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/loginFbButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:fontFamily="cursive"-->
+            <!--android:text="OR"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:paddingTop="2dp"-->
+            <!--android:layout_marginTop="5dp"/>-->
+        <!--<com.facebook.login.widget.LoginButton-->
+            <!--android:id="@+id/loginFbButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginBottom="5dp" />-->
 
         <!--<com.facebook.login.widget.LoginButton-->
             <!--android:id="@+id/loginButton"-->
@@ -106,13 +106,13 @@
             <!--android:textColor="@android:color/white"-->
             <!--android:paddingHorizontal="75dp"/>-->
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/googleBtn"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<com.google.android.gms.common.SignInButton-->
+            <!--android:id="@+id/googleBtn"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-        </com.google.android.gms.common.SignInButton>
+        <!--</com.google.android.gms.common.SignInButton>-->
         <Button
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"

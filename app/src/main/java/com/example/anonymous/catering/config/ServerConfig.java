@@ -1,8 +1,9 @@
 package com.example.anonymous.catering.config;
 
 public class ServerConfig {
-    public static final String DOMAIN_SERVER = "http://192.168.1.3/";
+    public static final String DOMAIN_SERVER = "http://192.168.1.12/";
     public static final String SERVER_URL = DOMAIN_SERVER+"yii2/catering/api/v1/";
+    public static final String SERVER_URL2 = DOMAIN_SERVER+"yii2/catering/api/";
     public static final String  API_ENDPOINT = SERVER_URL;
     public static final String UPLOAD_FOTO_ENDPOINT = DOMAIN_SERVER+"yii2/catering/api/upload/upload.php";
     public static final String GOOGLE_API_ENDPOINT = "https://maps.googleapis.com/maps/api/";

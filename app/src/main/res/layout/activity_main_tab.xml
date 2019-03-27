@@ -22,8 +22,10 @@
         android:theme="@style/ThemeOverlay.AppCompat.Light">
 
         <android.support.v7.widget.Toolbar
+            style="@style/myActionButtonStyle"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"

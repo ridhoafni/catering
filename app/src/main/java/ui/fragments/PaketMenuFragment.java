@@ -82,7 +82,7 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
     // LogCat tag
 
     EditText GetetFormJumlahTotalHarga, GetetFormJumlahPaket, GetEtFormPesanTambahan, GetEtFormAlamat;
-    Button btnIncrease, btnDecrease, btnAlamatMaps, btnSimpan, btnTgl;
+    Button btnIncrease, btnDecrease, btnSimpan, btnTgl;
     String nama_paket, alamat_lengkap, pesanan_tambahan;
     double latitude, longitude;
     double GetLatitude, GetLongitude;
@@ -95,7 +95,7 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
     SessionManager sessionManager;
     ApiInterface apiService;
     NumberFormat formatRupiah;
-    TextView GetetFormHarga, GetTvPaket, GetTvPembuka, GetTvPenutup, GetTvPondok;
+    TextView GetetFormHarga, GetTvPaket, GetTvPembuka, GetTvPenutup, GetTvPondok, btnAlamatMaps;
     Spinner spinnerPaket;
     String selectedName;
     double harga, i;
@@ -130,7 +130,7 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
         GetetFormJumlahPaket      = (EditText)view.findViewById(R.id.etFormJumlahPaket);
         btnIncrease               = (Button)view.findViewById(R.id.increase);
         btnDecrease               = (Button)view.findViewById(R.id.decrease);
-        btnAlamatMaps             = (Button)view.findViewById(R.id.btnAlamatMaps);
+        btnAlamatMaps             = (TextView) view.findViewById(R.id.btnAlamatMaps);
         btnSimpan                 = (Button)view.findViewById(R.id.btn_simpan);
         GetetFormHarga            = (TextView)view.findViewById(R.id.etFormHarga);
         GetTvPaket                = (TextView)view.findViewById(R.id.tvPaket);
@@ -184,11 +184,8 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
 
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
-//        harga_satuan = 34900;
-
         System.out.println("Harga :"+harga_satuan);
 
-//        String number = Integer.toString(harga);
         GetetFormHarga.setText(formatRupiah.format((double)harga_satuan));
 
 
@@ -443,11 +440,11 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
                 if (response.isSuccessful()){
                     if (response.body().getCode().equals(200)){
                         // intent ke tab verifikasi pembayaran pakai ini azhar
-//                        ((MainTabActivity)getActivity()).navigateFragment(4);
+                        ((MainTabActivity)getActivity()).navigateFragment(2);
                         Intent pembayaran;
 //                      pembayaran.putExtra("id")
-                        pembayaran =new Intent(getActivity(), PembayaranActivity.class);
-                        startActivity(pembayaran);
+//                        pembayaran =new Intent(getActivity(), .class);
+//                        startActivity(pembayaran);
                         Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
@@ -476,12 +473,6 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
         GetetFormJumlahPaket.setText(""+number);
     }
 
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_pesanan, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
     @Override
     public void onLocationChanged(Location location) {

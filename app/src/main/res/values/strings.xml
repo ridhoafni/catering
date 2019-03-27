@@ -1,6 +1,6 @@
 <resources>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="app_name">Cikgood</string>
+    <string name="app_name">A.ACatering</string>
     <string name="title_shop">Shop</string>
     <string name="title_gifts">Gifts</string>
     <string name="title_cart">Cart</string>
@@ -29,7 +29,7 @@
     <string name="btn_login">SIGN IN</string>
     <string name="btn_sign_in_fb">SIGN IN WITH FACEBOOK</string>
     <string name="btn_sign_in_g">SIGN IN WITH GOOGLE</string>
-    <string name="btn_link_to_register">Not a member? Get registered in Cikgood now!</string>
+    <string name="btn_link_to_register">Buat Akun Baru</string>
     <string name="btn_link_to_login">Sudah Mendaftar. Login!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="btn_forgot_password">Lupa Password?</string>
@@ -73,8 +73,8 @@
     <string name="string_upload_image">Upload Images</string>
     <string name="string_view_image">View Images</string>
     <string name="password">Password</string>
-    <string name="tv_nama_detail_paket">Detail Paket Yang Di Pesan</string>
-    <string name="paket_menu">Menu Paket :</string>
+    <string name="tv_nama_detail_paket">Detail paket yang dipesan</string>
+    <string name="paket_menu">Menu Paket</string>
     <string name="simpan">Simpan</string>
     <string name="jumlah_paket">Jumlah Paket</string>
     <string name="paket_rp">Rp</string>
@@ -90,4 +90,19 @@
     <string name="paket_menu_penutup">Menu Makanan Penutup :</string>
     <string name="paket_menu_makanan_pondok">Menu Makanan Pondok :</string>
     <string name="pesan_tambahan">Pesan Tambahan</string>
+    <string name="nama_perusahaan">Nama Perusahaan</string>
+    <string name="PT">PT. ANUGRAH AMAL CITRABOGATAMA \nJl. Kasah No. 35 Tangkerang Tengah \nPekanbaru 28284, Riau</string>
+    <string name="telpon">No. Telepon</string>
+    <string name="telp">(0761) 856882</string>
+    <string name="hp">No. HP</string>
+    <string name="nohp">0823 9027 8882</string>
+    <string name="fax">fax</string>
+    <string name="nofax">(0761) 7893230</string>
+    <string name="jenis">Jenis Usaha</string>
+    <string name="jenisusaha">Jasa Boga</string>
+    <string name="cp">Contact Person</string>
+    <string name="nocp">Benny Septiadi</string>
+    <string name="web">Website</string>
+    <string name="website">www.aa-catering.com</string>
+    <string name="emailnya">benny@aa-catering.com \nmarketing_pku@aa-catering.com</string>
 </resources>

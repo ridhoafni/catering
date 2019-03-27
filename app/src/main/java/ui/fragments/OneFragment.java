@@ -50,54 +50,6 @@ public class OneFragment extends Fragment {
 
         setSliderViews();
 
-
-//        CvCars = (CardView)view.findViewById(R.id.cv_cars);
-//        CvCars.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), OjekActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        CvBikes = (CardView)view.findViewById(R.id.cv_bikes);
-//        CvBikes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), PlaceAutocompleteActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        CvBluebird = (CardView)view.findViewById(R.id.cv_bluebird);
-//        CvBluebird.setOnClickListener(new View.OnClickListener() {
-//            Uri gmmIntentUri;
-//
-//            @Override
-//            public void onClick(View v) {
-//                // Create a Uri from an intent string. Use the result to create an Intent.
-//                String gmmIntentUri = "http://maps.google.com/maps?saddr=0.4662126,101.35527169999999&daddr=0.4644965,101.3844829";
-////                      gmmIntentUri = Uri.parse("geo:0.5070677,101.4477793");
-//
-//                // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(gmmIntentUri));
-//                // Make the Intent explicit by setting the Google Maps package
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//
-//                // Attempt to start an activity that can handle the Intent
-//                startActivity(mapIntent);
-//            }
-//        });
-
-//        CvOthers = (CardView)view.findViewById(R.id.cv_others);
-//        CvOthers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), ViewActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         return view;
     }
 
@@ -109,16 +61,16 @@ public class OneFragment extends Fragment {
 
             switch (i) {
                 case 0:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl("https://aa-catering.com/wp-content/uploads/2015/08/W5-e1499830148375.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
                     break;
                 case 1:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/218983/pexels-photo-218983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl("https://aa-catering.com/wp-content/uploads/2015/12/Combo-e1499830186232.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
                     break;
                 case 2:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/747964/pexels-photo-747964.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+                    sliderView.setImageUrl("https://aa-catering.com/wp-content/uploads/2015/12/BLUE-JELLY-1024x576.jpg?auto=compress&cs=tinysrgb&h=750&w=1260");
                     break;
                 case 3:
-                    sliderView.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+                    sliderView.setImageUrl("https://aa-catering.com/wp-content/uploads/2015/12/Buffet3-1024x576.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
                     break;
             }
 
@@ -135,12 +87,6 @@ public class OneFragment extends Fragment {
             //at last add this view in your layout :
             sliderLayout.addSliderView(sliderView);
         }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_home, menu);
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
 }

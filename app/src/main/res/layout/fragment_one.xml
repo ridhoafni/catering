@@ -1,24 +1,477 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundPrimary"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/backgroundColor">
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
-        <com.smarteist.autoimageslider.SliderLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:outlineAmbientShadowColor="@color/colorAccent"
-            android:animateLayoutChanges="true"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/imageSlider"/>
-    </LinearLayout>
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          android:id="@+id/linearLayout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:orientation="vertical"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <com.smarteist.autoimageslider.SliderLayout
+              android:background="@drawable/bg_layout_slider"
+              android:id="@+id/imageSlider"
+              android:layout_width="match_parent"
+              android:layout_height="150dp"
+              android:layout_marginBottom="10dp"
+              android:animateLayoutChanges="true"
+              android:outlineAmbientShadowColor="@color/backgroundColor" />
+      </LinearLayout>
+
+
+      <HorizontalScrollView
+          android:id="@+id/horizontalScrollView"
+          android:layout_width="match_parent"
+          android:layout_height="120dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="16dp"
+          android:scrollbars="none"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="227dp"
+                  android:layout_height="98dp"
+                  android:layout_marginRight="20dp"
+                  android:src="@drawable/item_one" />
+
+              <ImageView
+                  android:layout_width="227dp"
+                  android:layout_height="98dp"
+                  android:layout_marginRight="20dp"
+                  android:src="@drawable/item_two" />
+
+              <ImageView
+                  android:layout_width="227dp"
+                  android:layout_height="98dp"
+                  android:layout_marginRight="20dp"
+                  android:src="@drawable/item_one" />
+
+              <ImageView
+                  android:layout_width="227dp"
+                  android:layout_height="98dp"
+                  android:layout_marginRight="20dp"
+                  android:src="@drawable/item_two" />
+
+
+          </LinearLayout>
+
+      </HorizontalScrollView>
+
+      <TextView
+          android:id="@+id/textView5"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:fontFamily="@font/mregular"
+          android:text="Profile"
+          android:textColor="#21272E"
+          android:textSize="18sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+      <TextView
+          android:id="@+id/textView6"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="8dp"
+          android:fontFamily="@font/mlight"
+          android:text="Info tentang AA Catering"
+          android:textColor="#8D8D8D"
+          android:textSize="12sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="16dp"
+          android:background="@drawable/bg_layout_white"
+          android:orientation="vertical"
+          android:paddingLeft="20dp"
+          android:paddingTop="30dp"
+          android:paddingRight="20dp"
+          android:paddingBottom="30dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="1.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/mregular"
+              android:text="Profile"
+              android:textColor="#21272c"
+              android:textSize="18sp" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:fontFamily="@font/_mlight"
+              android:text="Detail AA Catering"
+              android:textColor="#8D8D8D"
+              android:textSize="12sp" />
+
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="16dp"
+              android:layout_marginBottom="16dp"
+              android:background="#EDEDED" />
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="2dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/nama_perusahaan"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/PT"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="7dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/telpon"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/telp"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="7dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/fax"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/nofax"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="7dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/hp"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/nohp"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="7dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/jenis"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/jenisusaha"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="20dp"
+              android:orientation="horizontal">
+
+              <ImageView
+                  android:layout_width="55dp"
+                  android:layout_height="55dp"
+                  android:src="@drawable/ic_ticket_buy" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="12dp"
+                  android:layout_marginTop="7dp"
+                  android:orientation="vertical">
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:fontFamily="@font/mregular"
+                      android:text="@string/web"
+                      android:textColor="#21272e"
+                      android:textSize="16sp" />
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="4dp"
+                      android:fontFamily="@font/mlight"
+                      android:text="@string/website"
+                      android:textColor="#8D8D8D"
+                      android:textSize="10sp" />
+              </LinearLayout>
+
+          </LinearLayout>
+
+
+      </LinearLayout>
+
+    <!--<LinearLayout android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:background="@color/white"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+            <!--<TableLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/activity_vertical_margin"-->
+                <!--android:layout_gravity="center_horizontal">-->
+
+
+
+                <!--<TableRow>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/cp" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text=" : " />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/nocp"/>-->
+                <!--</TableRow>-->
+
+                <!--<TableRow>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/web" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text=" : " />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/website"/>-->
+                <!--</TableRow>-->
+
+                <!--<TableRow>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/email" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text=" : " />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="50dp"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:text="@string/emailnya"/>-->
+                <!--</TableRow>-->
+
+
+            <!--</TableLayout>-->
+    <!--</LinearLayout>-->
+
+  </android.support.constraint.ConstraintLayout>
+
 
 </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,12 +17,15 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import ui.fragments.CaraPemesananFragment;
 import ui.fragments.OneFragment;
 import ui.fragments.ProfilFragment;
 import ui.fragments.PaketMenuFragment;
+import ui.fragments.ProfileFragment;
 import ui.fragments.VerifikasiPemesananFragment;
 
 import com.example.anonymous.catering.R;
@@ -41,6 +45,7 @@ public class MainTabActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 //    private int[] tabIcons = {
 //            R.drawable.ic_home_black_24dp,
 //            R.drawable.ic_search_black_24dp,
@@ -49,9 +54,8 @@ public class MainTabActivity extends AppCompatActivity {
 //    };
 
     OneFragment oneFragment;
-    Fragment searchFragment;
+    ProfileFragment profileFragment;
     PaketMenuFragment paketMenuFragment;
-    CaraPemesananFragment caraPemesananFragment;
     VerifikasiPemesananFragment VPFragment;
 
     @Override
@@ -65,6 +69,8 @@ public class MainTabActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.logo3);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -104,16 +110,14 @@ public class MainTabActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         oneFragment     = new OneFragment();
-        searchFragment  = new ProfilFragment();
+        profileFragment  = new ProfileFragment();
         paketMenuFragment = new PaketMenuFragment();
-        caraPemesananFragment = new CaraPemesananFragment();
         VPFragment      = new VerifikasiPemesananFragment();
 
         adapter.addFragment(oneFragment, "Home");
-        adapter.addFragment(searchFragment, "Profil");
         adapter.addFragment(paketMenuFragment, "Menu Paket");
-        adapter.addFragment(caraPemesananFragment, "Cara Pembayaran");
-        adapter.addFragment(VPFragment, "Verifikasi Pemesanan");
+        adapter.addFragment(VPFragment, "Pemesanan");
+        adapter.addFragment(profileFragment, "Profil");
         viewPager.setAdapter(adapter);
     }
 
@@ -127,22 +131,13 @@ public class MainTabActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_leave) {
-            //Toast.makeText(MainTabActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
-            Logout();
-            return true;
-        }
 
-        else if (id == R.id.action_refresh){
-            Log.i(TAG, "Refresh menu item selected");
-            Toast.makeText(MainTabActivity.this, "Action clicked refresh", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainTabActivity.this, UploadImage.class);
-            return true;
 
-        }
-        else if (id == R.id.action_logout){
+
+        if (id == R.id.action_logout){
             Intent intent = new Intent(MainTabActivity.this, LoginActivity.class);
 
+            sessionManager = new SessionManager(MainTabActivity.this);
             // redirect to login page
             sessionManager.logoutMember();
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -151,20 +146,8 @@ public class MainTabActivity extends AppCompatActivity {
             return true;
 
         }
-        else if (id == R.id.action_settings){
-            Log.i(TAG, "Refresh menu item selected");
-            Toast.makeText(MainTabActivity.this, "Action clicked settings", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(MainTabActivity.this, ProfileActivity.class));
-            return true;
-
-        }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void Logout() {
-        auth.signOut();
-        startActivity(new Intent(MainTabActivity.this, LoginActivity.class));
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
