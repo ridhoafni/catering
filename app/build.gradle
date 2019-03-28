@@ -17,9 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        buildTypes.each {
-            it.buildConfigField 'String', 'BASE_URL_UPLOAD_IMAGE', "http://192.168.1.12/yii2/catering/api/upload/uploadimage.php"
-        }
+//        buildTypes.each {
+//            it.buildConfigField "String", "BASE_URL_UPLOAD_IMAGE", "http://192.168.1.12/yii2/catering/api/upload/uploadimage.php"
+//        }
 
     }
     compileOptions {
