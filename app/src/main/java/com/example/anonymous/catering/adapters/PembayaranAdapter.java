@@ -48,13 +48,13 @@ public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.Vi
         holder.tvTotal.setText(Pembayaran.getTotal().toString());
         holder.tvNamaPaket.setText(Pembayaran.getPemesananId().toString());
         holder.tvJumlah.setText(Pembayaran.getJumlahTransfer().toString());
-        holder.cvCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, PembayaranActivity.class);
-                context.startActivity(i);
-            }
-        });
+//        holder.cvCard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(context, PembayaranActivity.class);
+//                context.startActivity(i);
+//            }
+//        });
     }
     @Override
     public int getItemCount() {
@@ -62,14 +62,14 @@ public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.Vi
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvNamaPaket,tvJumlah,tvTotal,tvStatus,tvTanggal;
-        CardView cvCard;
+//        CardView cvCard;
         public ViewHolder(View itemView) {
             super(itemView);
             tvNamaPaket = itemView.findViewById(R.id.tvPaket);
             tvJumlah = itemView.findViewById(R.id.tvJumlah);
             tvTotal = itemView.findViewById(R.id.tvTotal);
             tvTanggal = itemView.findViewById(R.id.tvTanggal);
-            cvCard = itemView.findViewById(R.id.cvCard);
+//            cvCard = itemView.findViewById(R.id.cvCard);
         }
     }
 }

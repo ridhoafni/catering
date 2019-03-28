@@ -40,6 +40,9 @@ import ui.activities.GuruActivity;
  * A simple {@link Fragment} subclass.
  */
 public class VerifikasiPemesananFragment extends Fragment {
+
+    public static final String SERVER_URL = "http://192.168.1.12/yii2/catering/api/v1/";
+
     SessionManager sessionManager;
     @BindView(R.id.rvVerifikasi)
     RecyclerView rvVerifikasi;
@@ -75,7 +78,7 @@ public class VerifikasiPemesananFragment extends Fragment {
         idnya = Integer.parseInt(sessionManager.getMemberProfile().get("id_member"));
 
 
-        apiInterface = ApiClient.getClient(ServerConfig.API_ENDPOINT).create(ApiInterface.class);
+        apiInterface = ApiClient.getClient2(SERVER_URL).create(ApiInterface.class);
         getLayout(map.get(sessionManager.ID_MEMBER));
         progressDialog.setMessage("Loading ...");
         progressDialog.show();
@@ -106,6 +109,7 @@ public class VerifikasiPemesananFragment extends Fragment {
             public void onFailure(Call<ResponsePemesanan> call, Throwable t) {
                 Log.d("Error", t.toString());
             }
+
         });
     }
 

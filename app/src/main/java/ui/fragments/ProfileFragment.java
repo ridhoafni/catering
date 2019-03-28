@@ -53,19 +53,9 @@ public class ProfileFragment extends Fragment {
     private String SESSION_NAMA;
     private String SESSION_EMAIL;
     private String SESSION_NO_HP;
-    private String SESSION_PASSWORD;
-    private String SESSION_TGL_LAHIR;
+    private String SESSION_AGAMA;
     private String SESSION_JK;
-    private String SESSION_PROVINSI_KTP;
-    private String SESSION_KOTA_KTP;
-    private String SESSION_KECAMATAN_KTP;
-    private String SESSION_ALAMAT_KTP;
-    private String SESSION_PROVINSI_DOMISILI;
-    private String SESSION_KOTA_DOMISILI;
-    private String SESSION_KECAMATAN_DOMISILI;
-    private String SESSION_ALAMAT_DOMISILI;
-    private String SESSION_BIODATA;
-    private String SESSION_PHOTO_PROFILE;
+    private String SESSION_USERNAME;
 
     private Button btnEdit;
     private Context context;
@@ -106,15 +96,25 @@ public class ProfileFragment extends Fragment {
         tvAgama.setText(sessionManager.getMemberProfile().get("agama"));
         tvHP.setText(sessionManager.getMemberProfile().get("no_hp"));
 
+        SESSION_EMAIL = sessionManager.getMemberProfile().get("email");
+        SESSION_NO_HP = sessionManager.getMemberProfile().get("no_hp");
+        SESSION_NAMA = sessionManager.getMemberProfile().get("nama_lengkap");
+        SESSION_AGAMA = sessionManager.getMemberProfile().get("agama");
+        SESSION_USERNAME = sessionManager.getMemberProfile().get("username");
+        SESSION_JK = sessionManager.getMemberProfile().get("jk");
+
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MainTabActivity.class);
                 Intent edit = new Intent(getApplicationContext(), UpdateProfilActivity.class);
-//                edit.putExtra(ProfilFragment.KEY_ID_GURU,      SESSION_ID_MURID);
-//                edit.putExtra(ProfilFragment.KEY_NAMA,         SESSION_NAMA);
-//                edit.putExtra(ProfilFragment.KEY_NO_HP,        SESSION_NO_HP);
-//                edit.putExtra(ProfilFragment.KEY_EMAIL,        SESSION_EMAIL);
+                edit.putExtra(UpdateProfilActivity.KEY_ID_MEMBER,    SESSION_ID_MURID);
+                edit.putExtra(UpdateProfilActivity.KEY_NAMA,         SESSION_NAMA);
+                edit.putExtra(UpdateProfilActivity.KEY_NO_HP,        SESSION_NO_HP);
+                edit.putExtra(UpdateProfilActivity.KEY_EMAIL,        SESSION_EMAIL);
+                edit.putExtra(UpdateProfilActivity.KEY_AGAMA,        SESSION_AGAMA);
+                edit.putExtra(UpdateProfilActivity.KEY_USERNAME,     SESSION_USERNAME);
+                edit.putExtra(UpdateProfilActivity.KEY_JK,     SESSION_JK);
 
                 startActivity(edit);
             }

@@ -441,9 +441,9 @@ public class PaketMenuFragment extends Fragment implements LocationListener {
                     if (response.body().getCode().equals(200)){
                         // intent ke tab verifikasi pembayaran pakai ini azhar
                         ((MainTabActivity)getActivity()).navigateFragment(2);
-                        Intent pembayaran;
-//                      pembayaran.putExtra("id")
-//                        pembayaran =new Intent(getActivity(), .class);
+//                        Intent pembayaran;
+////                      pembayaran.putExtra("id")
+//                        pembayaran =new Intent(getActivity(), PembayaranActivity.class);
 //                        startActivity(pembayaran);
                         Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
                     }else{
