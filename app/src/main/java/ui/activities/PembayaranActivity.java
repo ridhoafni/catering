@@ -27,6 +27,7 @@ import com.example.anonymous.catering.response.ResponsePembayaran;
 import com.example.anonymous.catering.response.ResponsePemesananJoin;
 import com.example.anonymous.catering.rests.ApiClient;
 import com.example.anonymous.catering.rests.ApiInterface;
+import com.example.anonymous.catering.rests.ApiInterface2;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -43,6 +44,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PembayaranActivity extends AppCompatActivity {
+
+    public static final String SERVER_URL = "http://192.168.1.12/yii2/catering/api/";
+
+
     @BindView(R.id.tvNama)
     TextView tvNama;
     @BindView(R.id.tvNamaPesanan)
@@ -63,7 +68,7 @@ public class PembayaranActivity extends AppCompatActivity {
     String partimage;
     ProgressDialog pd;
     final int REQUEST_GALLERY = 9544;
-    ApiInterface apiInterface;
+    ApiInterface2 apiInterface2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,7 @@ public class PembayaranActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Pembayaran");
         pd = new ProgressDialog(this);
         pd.setMessage("loading ...");
-
+tvNama.setText(getIntent().getStringExtra("id_pemesanan"));
 //        String nama,namapesanan,jumlahpesanan,tglPesan,jumlahtransfer,total,alamat;
 //        nama = getIntent().getStringExtra("id_pemesanan");
 //        namapesanan = getIntent().getStringExtra("nama_paket");
@@ -88,7 +93,7 @@ public class PembayaranActivity extends AppCompatActivity {
 //        etJumlahTransfer.setText(""+jumlahtransfer);
 //        tvTglPesan.setText(""+total);
 //        final HashMap<String, String> map = sessionManager.getMemberProfile();
-        apiInterface = ApiClient.getClient(ServerConfig.SERVER_URL2).create(ApiInterface.class);
+        apiInterface2 = ApiClient.getClient(SERVER_URL).create(ApiInterface2.class);
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,22 +138,33 @@ public class PembayaranActivity extends AppCompatActivity {
                 RequestBody total = RequestBody.create(
                         MediaType.parse("text/plain"),
 //                        ""+getIntent().getStringExtra("total"));
-                        ""+"9");
+                        "9");
                 RequestBody jumlah_transfer = RequestBody.create(
                         MediaType.parse("text/plain"),
                         ""+etJumlahTransfer.getText().toString());
-                apiInterface.uploadImage(partGambar,pemesanan_id,jumlah_transfer,total).enqueue(new Callback<ResponseGambar>() {
+                Log.d("kumbang",""+partGambar);
+                Log.d("kumbang1",""+pemesanan_id);
+                Log.d("kumbang2",""+jumlah_transfer);
+                Log.d("kumbang3",""+total);
+
+                apiInterface2.uploadImage(partGambar,pemesanan_id,jumlah_transfer,total).enqueue(new Callback<ResponseGambar>() {
                     @Override
                     public void onResponse(Call<ResponseGambar> call, Response<ResponseGambar> response) {
-                        System.out.println("UUU :"+response);
+
                         pd.dismiss();
-                        Log.d("Kambing",""+response.body().toString());
-                        if (response.body().getKode().equals("1")){
-                            Toast.makeText(getApplicationContext(), ""+response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+
+                            Log.d("kumbang",""+response);
                         }
                         else{
-                            Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+                            Log.d("kumbang",""+partGambar);
                         }
+//                        if (response.body().getKode().equals("1")){
+//                            Toast.makeText(getApplicationContext(), ""+response.body().getPesan(), Toast.LENGTH_SHORT).show();
+//                        }
+//                        else{
+//                            Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
+//                        }
                     }
 
                     @Override

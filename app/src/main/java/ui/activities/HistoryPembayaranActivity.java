@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,13 +39,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HistoryPembayaranActivity extends AppCompatActivity {
+
+    public static final String SERVER_URL = "http://192.168.1.12/yii2/catering/api/v1/";
+
     SessionManager sessionManager;
     @BindView(R.id.rvHistory)
     RecyclerView rvVerifikasi;
     @BindView(R.id.tvTotal)
     TextView tvTotal;
     @BindView(R.id.btnPembayaran)
-    ImageView btnPembayaran;
+    Button btnPembayaran;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ProgressDialog progressDialog;
@@ -59,8 +64,11 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
         rvVerifikasi.setLayoutManager(layoutManager);
         sessionManager = new SessionManager(HistoryPembayaranActivity.this);
         final HashMap<String, String> map = sessionManager.getMemberProfile();
-        apiInterface = ApiClient.getClient(ServerConfig.API_ENDPOINT).create(ApiInterface.class);
+        apiInterface = ApiClient.getClient(SERVER_URL).create(ApiInterface.class);
         getLayout();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Histori Pembayaran");
 
         btnPembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,5 +113,18 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Context context = null;
+//                ((MainTabActivity)context).navigateFragment(4);
+                Intent i = new Intent(getApplicationContext(), MainTabActivity.class);
+                startActivity(i);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

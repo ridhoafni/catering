@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     tools:context="ui.activities.UpdateProfilActivity">
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +27,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -37,44 +43,14 @@
                     android:textColor="#8D8D8D"
                     android:textSize="20sp" />
 
-                <Spinner
-                    android:id="@+id/spinnerJenisPaket"
+                <EditText
+                    android:id="@+id/etFormNama"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_input_edit"
                     android:inputType="text"
                     android:paddingLeft="12dp"
                     android:spinnerMode="dialog" />
-
-            </LinearLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:id="@+id/etFormHarga"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="center"
-                    android:inputType="text"
-                    android:text="@string/harga_per_paket"
-                    android:textColor="@color/materialgreen"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-            </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="24dp">
 
             </LinearLayout>
 
@@ -90,12 +66,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:text="@string/pesan_tambahan"
+                    android:text="@string/email"
                     android:textColor="#8D8D8D"
                     android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/etFormPesanTambahan"
+                    android:id="@+id/etFormEmail"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/bg_input_edit"
@@ -109,9 +85,111 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/username"
+                    android:textColor="#8D8D8D"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/etFormUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_input_edit"
+                    android:inputType="text"
+                    android:paddingLeft="12dp"
+                    android:spinnerMode="dialog" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/no_hp"
+                    android:textColor="#8D8D8D"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/etFormNoHp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_input_edit"
+                    android:inputType="text"
+                    android:paddingLeft="12dp"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/agama"
+                    android:textColor="#8D8D8D"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/etFormAgama"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_input_edit"
+                    android:inputType="text"
+                    android:paddingLeft="12dp"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="@string/jk"
+                    android:textColor="#8D8D8D"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/etFormJk"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_input_edit"
+                    android:inputType="text"
+                    android:paddingLeft="12dp"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -124,10 +202,10 @@
             android:layout_marginRight="12sp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/bg_btn_accent_primary"
-            android:text="@string/pesan"
+            android:text="@string/update"
             android:textColor="#FFF"
             android:textSize="20sp" />
 
     </LinearLayout>
-
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
