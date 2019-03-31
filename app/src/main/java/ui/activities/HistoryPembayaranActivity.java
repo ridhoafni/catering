@@ -40,6 +40,8 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
     SessionManager sessionManager;
     @BindView(R.id.rvHistory)
     RecyclerView rvVerifikasi;
+    @BindView(R.id.tvJumlahSeluruh)
+    TextView tvJumlahSeluruh;
     @BindView(R.id.tvTotal)
     TextView tvTotal;
     @BindView(R.id.btnPembayaran)
@@ -48,7 +50,8 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     ProgressDialog progressDialog;
     ApiInterface apiInterface;
-    List<Pembayaran> pembayaran = new ArrayList<>();
+    public List<Pembayaran> pembayaran = new ArrayList<>();
+    int bayar = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,11 +80,14 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
         Intent i = new Intent(HistoryPembayaranActivity.this,PembayaranActivity.class);
         i.putExtra("id_pemesanan",id_pemesanan);
         i.putExtra("total",getIntent().getStringExtra("total"));
+        i.putExtra("bayar",getIntent().getStringExtra("total"));
+        i.putExtra("bayar",""+this.bayar);
         startActivity(i);
     }
     private void getLayout() {
         String id_pemesanan = getIntent().getStringExtra("id_pemesanan");
-        String total = getIntent().getStringExtra("total");
+        int total = Integer.parseInt(getIntent().getStringExtra("total"));
+        tvJumlahSeluruh.setText(""+total);
         apiInterface.pembayaranFindByPemesanan(id_pemesanan).enqueue(new Callback<ResponsePembayaran>() {
             @Override
             public void onResponse(Call<ResponsePembayaran> call, Response<ResponsePembayaran> response) {
@@ -89,9 +95,10 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if (response.body().getMaster().size()>0){
                         pembayaran = response.body().getMaster();
-                        adapter = new PembayaranAdapter(HistoryPembayaranActivity.this,pembayaran,Integer.parseInt(total));
-                        int bayar = ((PembayaranAdapter) adapter).getTotal();
+                        adapter = new PembayaranAdapter(HistoryPembayaranActivity.this,pembayaran,getIntent().getStringExtra("nama_pesanan"));
+                        int bayar = total-((PembayaranAdapter) adapter).getTotal();
                         tvTotal.setText(""+bayar);
+                        setBayar(bayar);
                         rvVerifikasi.setAdapter(adapter);
                     }
                 }
@@ -105,5 +112,9 @@ public class HistoryPembayaranActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private int setBayar(int bayar) {
+        return this.bayar = bayar;
     }
 }

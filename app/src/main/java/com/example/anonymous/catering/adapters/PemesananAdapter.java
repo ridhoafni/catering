@@ -44,6 +44,7 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.View
                 Toast.makeText(context, ""+Pemesanan.getIdPemesanan(), Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(context, HistoryPembayaranActivity.class);
                 i.putExtra("id_pemesanan",""+Pemesanan.getIdPemesanan());
+                i.putExtra("nama_pesanan",""+Pemesanan.getNamaPaket());
                 i.putExtra("total",""+Pemesanan.getTotal());
                 context.startActivity(i);
             }

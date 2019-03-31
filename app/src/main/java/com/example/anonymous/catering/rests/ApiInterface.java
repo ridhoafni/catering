@@ -90,7 +90,7 @@ public interface ApiInterface {
     @GET("pembayaran/find-by-pemesanan")
     Call<ResponsePembayaran> pembayaranFindByPemesanan(@Query("id") String id);
 
-    @GET("v1/pemesan/find")
+    @GET("pemesan/find")
     Call<ResponsePemesananJoin> pemesananJoin(@Query("id") String id);
 
     @Multipart

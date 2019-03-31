@@ -1,13 +1,15 @@
 package ui.activities;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,17 +23,14 @@ import android.widget.Toast;
 
 import com.example.anonymous.catering.R;
 import com.example.anonymous.catering.config.ServerConfig;
-import com.example.anonymous.catering.models.Pembayaran;
+import com.example.anonymous.catering.models.PemesananJoin;
 import com.example.anonymous.catering.response.ResponseGambar;
-import com.example.anonymous.catering.response.ResponsePembayaran;
 import com.example.anonymous.catering.response.ResponsePemesananJoin;
 import com.example.anonymous.catering.rests.ApiClient;
 import com.example.anonymous.catering.rests.ApiInterface;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.InputStream;
-import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +42,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PembayaranActivity extends AppCompatActivity {
-    @BindView(R.id.tvNama)
-    TextView tvNama;
+    @BindView(R.id.tvTagihan)
+    TextView tvTagihan;
     @BindView(R.id.tvNamaPesanan)
     TextView tvNamaPesanan;
     @BindView(R.id.tvJumlahPesanan)
@@ -64,6 +63,7 @@ public class PembayaranActivity extends AppCompatActivity {
     ProgressDialog pd;
     final int REQUEST_GALLERY = 9544;
     ApiInterface apiInterface;
+    public int total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +74,10 @@ public class PembayaranActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Pembayaran");
         pd = new ProgressDialog(this);
         pd.setMessage("loading ...");
+        apiInterface = ApiClient.getClient(ServerConfig.API_ENDPOINT).create(ApiInterface.class);
+        getListPemesananJoin();
+        getPermissionStorage();
 
-//        String nama,namapesanan,jumlahpesanan,tglPesan,jumlahtransfer,total,alamat;
-//        nama = getIntent().getStringExtra("id_pemesanan");
-//        namapesanan = getIntent().getStringExtra("nama_paket");
-//        jumlahpesanan = getIntent().getStringExtra("jumlah_pesanan");
-//        jumlahtransfer = getIntent().getStringExtra("jumlah_transfer");
-//        alamat = getIntent().getStringExtra("alamat");
-//        total = getIntent().getStringExtra("total");
-//        tvNama.setText(""+nama);
-//        tvNamaPesanan.setText(""+namapesanan);
-//        tvJumlahPesanan.setText(""+jumlahpesanan);
-//        etJumlahTransfer.setText(""+jumlahtransfer);
-//        tvTglPesan.setText(""+total);
-//        final HashMap<String, String> map = sessionManager.getMemberProfile();
-        apiInterface = ApiClient.getClient(ServerConfig.SERVER_URL2).create(ApiInterface.class);
 
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,40 +89,27 @@ public class PembayaranActivity extends AppCompatActivity {
             }
         });
 
-//        apiInterface.pemesananJoin(getIntent().getStringExtra("id_pemesanan")).enqueue(new Callback<ResponsePemesananJoin>() {
-//            @Override
-//            public void onResponse(Call<ResponsePemesananJoin> call, Response<ResponsePemesananJoin> response) {
-//                if (response.isSuccessful()){
-//                    Log.d("kantau","");
-//                }
-//                else{
-//                    Log.d("kantau2","");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponsePemesananJoin> call, Throwable t) {
-//                Log.d("kantau2",""+t.toString());
-//            }
-//        });
         btnBayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                HashMap<String, RequestBody> map = new HashMap<>();
-//                map.put("pemesanan_id", createPartFromString("24"));
-//                map.put("jumlah_transfer", createPartFromString("24000"));
-//                map.put("total", createPartFromString(getIntent().getStringExtra("29000")));
-//                pd.show();
+//
                 File imageFile = new File(partimage);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-file"),imageFile);
                 MultipartBody.Part partGambar = MultipartBody.Part.createFormData("bukti_transfer",imageFile.getName(),requestBody);
                 RequestBody pemesanan_id = RequestBody.create(
                         MediaType.parse("text/plain"),
                         ""+getIntent().getStringExtra("id_pemesanan"));
+                String bayar;
+                if (Integer.parseInt(getIntent().getStringExtra("bayar"))==0){
+                    bayar = ""+getTotal();
+                }
+                else{
+                    bayar = getIntent().getStringExtra("bayar");
+                }
                 RequestBody total = RequestBody.create(
                         MediaType.parse("text/plain"),
 //                        ""+getIntent().getStringExtra("total"));
-                        ""+"9");
+                        ""+bayar);
                 RequestBody jumlah_transfer = RequestBody.create(
                         MediaType.parse("text/plain"),
                         ""+etJumlahTransfer.getText().toString());
@@ -145,6 +121,8 @@ public class PembayaranActivity extends AppCompatActivity {
                         Log.d("Kambing",""+response.body().toString());
                         if (response.body().getKode().equals("1")){
                             Toast.makeText(getApplicationContext(), ""+response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(PembayaranActivity.this,MainActivity.class);
+                            startActivity(i);
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "Gagal", Toast.LENGTH_SHORT).show();
@@ -159,6 +137,61 @@ public class PembayaranActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void getPermissionStorage() {
+        if(ContextCompat.checkSelfPermission(PembayaranActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            btnUpload.setEnabled(false);
+            ActivityCompat.requestPermissions(PembayaranActivity.this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE }, 0);
+        }
+    }
+
+    private void getListPemesananJoin() {
+        apiInterface.pemesananJoin(getIntent().getStringExtra("id_pemesanan")).enqueue(new Callback<ResponsePemesananJoin>() {
+            @Override
+            public void onResponse(Call<ResponsePemesananJoin> call, Response<ResponsePemesananJoin> response) {
+                if (response.isSuccessful()){
+                    List<PemesananJoin> pemesananJoins = response.body().getMaster();
+                    int total_response = Integer.parseInt(pemesananJoins.get(0).getTotal());
+                    setTotal(total_response);
+                    String nama_pesanan = pemesananJoins.get(0).getNamaPaket();
+                    String tanggal = pemesananJoins.get(0).getTglPesanan();
+                    String jumlah = pemesananJoins.get(0).getJumlahPesanan();
+                    setValueParameter(nama_pesanan,tanggal,jumlah);
+                }
+                else{
+                    Log.d("kantau2","");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePemesananJoin> call, Throwable t) {
+                Log.d("kantau2",""+t.toString());
+            }
+        });
+    }
+
+    private void setValueParameter(String nama,String tgl,String jumlah) {
+        String bayar;
+        if (Integer.parseInt(getIntent().getStringExtra("bayar"))==0){
+            bayar = ""+getTotal();
+        }
+        else{
+            bayar = getIntent().getStringExtra("bayar");
+        }
+        tvTagihan.setText(bayar);
+        tvNamaPesanan.setText(""+nama);
+        tvTglPesan.setText(""+tgl);
+        tvJumlahPesanan.setText(""+jumlah);
+    }
+
+    private int setTotal(int total_response) {
+        this.total = total_response;
+        return this.total;
+    }
+    private int getTotal(){
+        return this.total;
     }
 
     @Override
@@ -203,9 +236,14 @@ public class PembayaranActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    @NonNull
-    private RequestBody createPartFromString(String descriptionString) {
-        return RequestBody.create(
-                MultipartBody.FORM, descriptionString);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                btnUpload.setEnabled(true);
+            }
+        }
     }
+
 }
